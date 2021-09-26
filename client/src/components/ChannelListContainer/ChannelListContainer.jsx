@@ -1,4 +1,8 @@
 import React from 'react'
+import { ChannelList, useChatContext } from 'stream-chat-react';
+import Cookies from 'universal-cookie';
+
+import { ChannelSearch, TeamChannelList, TeamChannelPreview } from '.././';
 
 import CodeIcon from '../../assets/code.png';
 import LogoutIcon from '../../assets/logout.png';
@@ -30,6 +34,33 @@ const ChannelListContainer = () => {
             <SideBar />
             <div className="actions-container">
                 <ActionsHeader />
+                <ChannelSearch />
+                <ChannelList 
+                    filters={{}}
+                    channelRenderFilterFn={() => {}}
+                    List={(listProps) => (
+                        <TeamChannelList {...listProps} type="team"/>
+                    )}
+                    Preview={(previewProps) => (
+                        <TeamChannelPreview 
+                            {...previewProps}
+                            type="team"
+                        />
+                    )}
+                />
+                <ChannelList 
+                    filters={{}}
+                    channelRenderFilterFn={() => {}}
+                    List={(listProps) => (
+                        <TeamChannelList {...listProps} type="messaging"/>
+                    )}
+                    Preview={(previewProps) => (
+                        <TeamChannelPreview 
+                            {...previewProps}
+                            type="messaging"
+                        />
+                    )}
+                />
             </div>
         </>
     )
