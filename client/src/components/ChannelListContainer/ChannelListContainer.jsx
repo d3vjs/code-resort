@@ -7,7 +7,9 @@ import { ChannelSearch, TeamChannelList, TeamChannelPreview } from '.././';
 import CodeIcon from '../../assets/code.png';
 import LogoutIcon from '../../assets/logout.png';
 
-const SideBar = () => (
+const cookies = new Cookies();
+
+const SideBar = ({ logout }) => (
     <div className="sidebar">
         <div className="sidebar-icon">
             <div className="inner-icon">
@@ -15,7 +17,7 @@ const SideBar = () => (
             </div>
         </div>
         <div className="sidebar-icon">
-            <div className="inner-icon">
+            <div className="inner-icon" onClick={logout}>
                 <img src={LogoutIcon} alt="Logout" width="30" />
             </div>
         </div>
@@ -29,33 +31,48 @@ const ActionsHeader = () => (
 )
 
 const ChannelListContainer = () => {
+
+    const logout = () => {
+
+        cookies.remove('token');
+        cookies.remove('userId');
+        cookies.remove('username');
+        cookies.remove('fullName');
+        cookies.remove('phoneNumber');
+        cookies.remove('avatarURL');
+        cookies.remove('hashedPassword');
+
+        window.location.reload();
+
+    }
+
     return (
         <>
-            <SideBar />
+            <SideBar logout={logout}/>
             <div className="actions-container">
                 <ActionsHeader />
                 <ChannelSearch />
-                <ChannelList 
+                <ChannelList
                     filters={{}}
-                    channelRenderFilterFn={() => {}}
+                    channelRenderFilterFn={() => { }}
                     List={(listProps) => (
-                        <TeamChannelList {...listProps} type="team"/>
+                        <TeamChannelList {...listProps} type="team" />
                     )}
                     Preview={(previewProps) => (
-                        <TeamChannelPreview 
+                        <TeamChannelPreview
                             {...previewProps}
                             type="team"
                         />
                     )}
                 />
-                <ChannelList 
+                <ChannelList
                     filters={{}}
-                    channelRenderFilterFn={() => {}}
+                    channelRenderFilterFn={() => { }}
                     List={(listProps) => (
-                        <TeamChannelList {...listProps} type="messaging"/>
+                        <TeamChannelList {...listProps} type="messaging" />
                     )}
                     Preview={(previewProps) => (
-                        <TeamChannelPreview 
+                        <TeamChannelPreview
                             {...previewProps}
                             type="messaging"
                         />
