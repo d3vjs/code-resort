@@ -3,6 +3,7 @@
     --secondary-color: #2f3136;
     --input-color: rgba(0, 0, 0, 0.1);
     --input-border: rgba(0, 0, 0, 0.3);
+    --primary-button: hsl(235,calc(var(--saturation-factor, 1)*85.6%),64.7%);
 }
 
 html,
@@ -46,6 +47,116 @@ body {
     justify-content: center;
 }
 
+.auth-form-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+
+    .form-fields {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem;
+        background-color: var(--secondary-color);
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 2rem;
+            box-shadow: 0px 1px 5px rgb(0 0 0 / 10%);
+            border-radius: 5px;
+            transition: 0.8s ease;
+            background: var(--primary-color);
+
+            p {
+                font-size: 1.5rem;
+                font-family: Arial, Helvetica, sans-serif;
+                color: #fff;
+                font-weight: 900;
+            }
+
+            .auth-input {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                margin: 1rem 0rem;
+
+                label {
+                    margin-bottom: 0.45rem;
+                    color: #fff;
+                    font-size: 12px;
+                    letter-spacing: 0.7px;
+                    font-family: Arial, Helvetica, sans-serif;
+                    line-height: 1.3;
+                }
+
+                input {
+                    padding: 0.55rem 0.4rem;
+                    border: 1px solid var(--input-border);
+                    border-radius: 4px;
+                    font-size: 14px;
+                    outline: none;
+                    transition: all 150ms ease-in-out 0s;
+                    width: 85%;
+                    background: var(--input-color);
+                    color: #fff;
+                }
+            }
+        }
+
+        .form-button {
+
+            margin-top: 2rem;
+            display: flex;
+            justify-content: flex-start;
+            cursor: pointer;
+            button {
+                border-radius: 4px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: 500;
+                color: #FFF;
+                background-color: var(--primary-button);
+                padding: 0.7rem 1.2rem;
+                outline: none;
+                cursor: pointer;
+                transition: 0.3s ease;
+            }
+        }
+
+        .account {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-top: 0.2rem;
+            color: #fff;
+
+            p {
+                font-size: 14px;
+                font-weight: 500;
+                margin-right: 10px;
+            }
+            span {
+                cursor: pointer;
+                text-decoration: underline;
+            }
+        }
+    }
+    .form-image {
+        flex: 3;
+        display: flex;
+        width: auto;
+        height: 100vh;
+        object-fit: cover;
+        box-shadow: 1px 0px 5px rgba(0, 0, 0, 0.05);
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+}
 .actions-header {
     padding-left: 16px;
     height: 62px;
@@ -91,7 +202,7 @@ body {
                 display: flex;
                 justify-content: center;
             }
-            
+
             .input-text {
                 background: none;
                 border: none;
@@ -111,12 +222,12 @@ body {
         flex-direction: column;
 
         .message {
-            color: #FFF;
+            color: #fff;
             padding: 0 16px;
         }
         .loading {
             height: 115px;
-        } 
+        }
 
         .channel-header {
             padding: 0 16px;
@@ -139,7 +250,7 @@ body {
         align-items: center;
         font-family: Helvetica Neue, sans-serif;
         font-size: 14px;
-        color: #FFF;
+        color: #fff;
         padding: 0px 20px;
         height: 100%;
         width: 100%;
