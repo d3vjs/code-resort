@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import 'stream-chat-react/dist/css/index.css';
 import './App.scss';
 
 import { StreamChat } from 'stream-chat';
@@ -26,14 +27,28 @@ if (authToken) {
 }
 
 const App = () => {
+    const [createType, setCreateType] = useState('');
+    const [isCreating, setIsCreating] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
 
     if (!authToken) return <Auth />
 
     return (
         <div className="container">
-            <Chat client={client} theme="team dark">
-                <ChannelListContainer />
-                <ChannelContainer />
+            <Chat client={client} theme="dark">
+                <ChannelListContainer
+                    isCreating={isCreating}
+                    setIsCreating={setIsCreating}
+                    setCreateType={setCreateType}
+                    setIsEditing={setIsEditing}
+                />
+                <ChannelContainer
+                    isCreating={isCreating}
+                    setIsCreating={setIsCreating}
+                    isEditing={isEditing}
+                    setIsEditing={setIsEditing}
+                    createType={createType}
+                />
             </Chat>
         </div>
     )
